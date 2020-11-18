@@ -1,0 +1,43 @@
+<section class="section-content">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-6">
+        <mat-card>
+          <h1 class="text-center">{{ formTitle }}</h1>
+          <mat-spinner *ngIf="isLoading"></mat-spinner>
+          <form *ngIf="!isLoading" (submit)="onLogin(loginForm)" #loginForm="ngForm">
+            <div class="example-container">
+              <mat-form-field>
+                <mat-label>Email</mat-label>
+                <input type="email" matInput
+                ngModel #emailInput
+                email required name="email">
+                <mat-error *ngIf="emailInput.invalid">
+                  <span>
+                    Enter a valid Email.
+                  </span>
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Password</mat-label>
+                <input type="password" matInput
+                ngModel #passwordInput
+                required name="password">
+                <mat-error *ngIf="passwordInput.invalid">
+                  <span>
+                    Enter a valid Password.
+                  </span>
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <button type="submit" mat-raised-button color="primary"
+            [disabled]="loginForm.invalid">
+              Login
+            </button>
+          </form>
+          <p class="mt-2">Don't have an account? <a routerLink="/auth/register">Create one</a>.</p>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</section>

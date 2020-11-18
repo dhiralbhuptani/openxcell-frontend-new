@@ -1,0 +1,36 @@
+<mat-toolbar>
+  <a class="logo-link" [routerLink]="'/home'">Events Management</a>
+  <span class="example-spacer"></span>
+  <ng-container *ngIf="isUserAuthenticated">
+    <a mat-button
+      routerLink="/home"
+      routerLinkActive="mat-primary"
+      class="menu-link">
+      Home
+    </a>
+    <a mat-button
+      routerLink="/events/create"
+      routerLinkActive="mat-primary"
+      class="menu-link">
+      Create Event
+    </a>
+    <a mat-button
+      routerLink="/events/list"
+      routerLinkActive="mat-primary"
+      class="menu-link">
+      Events
+    </a>
+    <a mat-button
+      routerLink="/events/my-events"
+      routerLinkActive="mat-primary"
+      class="menu-link">
+      My Events
+    </a>
+    <button mat-button [matMenuTriggerFor]="menu">Welcome, {{ user }}</button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>Change Password</button>
+      <button mat-menu-item>Reset Password</button>
+      <button mat-menu-item (click)="logout()">Logout</button>
+    </mat-menu>
+  </ng-container>
+</mat-toolbar>

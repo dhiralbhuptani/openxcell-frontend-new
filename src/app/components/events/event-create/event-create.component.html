@@ -1,0 +1,51 @@
+<section class="section-content">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-6">
+        <mat-card>
+          <h1 class="text-center">{{ formTitle }}</h1>
+          <mat-spinner *ngIf="isLoading"></mat-spinner>
+          <form [formGroup]="createEventForm" *ngIf="!isLoading"
+          (ngSubmit)="onCreateEvent()">
+            <div class="example-container">
+              <mat-form-field>
+                <mat-label>Event Name</mat-label>
+                <input type="text" matInput formControlName="eventName">
+                <mat-error *ngIf="isValidInput('eventName')">
+                  <span *ngIf="createEventForm.controls['eventName'].errors.required">
+                    {{ _commonService.validateRequiredMessage('Event Name') }}
+                  </span>
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field color="accent">
+                <mat-label>Event Date</mat-label>
+                <input matInput [matDatepicker]="picker1"
+                formControlName="eventDate">
+                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+                <mat-error *ngIf="isValidInput('eventDate')">
+                  <span *ngIf="createEventForm.controls['eventDate'].errors.required">
+                    {{ _commonService.validateRequiredMessage('Event Date') }}
+                  </span>
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Event Address</mat-label>
+                <textarea matInput formControlName="eventAddress"></textarea>
+                <mat-error *ngIf="isValidInput('eventAddress')">
+                  <span *ngIf="createEventForm.controls['eventAddress'].errors.required">
+                    {{ _commonService.validateRequiredMessage('Event Address') }}
+                  </span>
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <button type="submit" mat-raised-button color="primary"
+              [disabled]="!createEventForm.valid || isLoading">
+              Create Event
+            </button>
+          </form>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</section>
